@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
+import UpdatePassword from './pages/UpdatePassword';
 
 function App() {
   return (
@@ -19,6 +20,13 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute element={AdminDashboard} allowedRoles={['admin']} />} />
         <Route path="/user" element={<ProtectedRoute element={UserDashboard} allowedRoles={['user']} />} />
         <Route path="/owner" element={<ProtectedRoute element={OwnerDashboard} allowedRoles={['store-owner']} />} />
+        
+
+<Route
+  path="/update-password"
+  element={<ProtectedRoute element={UpdatePassword} allowedRoles={['user', 'store-owner']} />}
+/>
+
       </Routes>
     </BrowserRouter>
   );

@@ -8,26 +8,30 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
-      const token = res.data.token;
-      localStorage.setItem("token", token);
-      const { role } = JSON.parse(atob(token.split(".")[1]));
-      if (role === "admin") Navigate("/admin");
-      else if (role === "user") Navigate("/user");
-      else if (role === "store-onwer") Navigate("/owner");
-      else Navigate("/");
-      alert("Login successful!");
-    } catch (err) {
-      // setError(err.response?.data?.error || "Login failed");
-      setError("Login failed");
-    }
-  };
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:5000/api/auth/login", {
+      email,
+      password
+    });
+
+    const token = res.data.token;
+    localStorage.setItem("token", token);
+
+    const { role } = JSON.parse(atob(token.split('.')[1]));
+
+    // Redirect based on role
+    if (role === 'admin') window.location.href = '/admin';
+    else if (role === 'user') window.location.href = '/user';
+    else if (role === 'store-owner') window.location.href = '/owner';
+    else window.location.href = '/';
+    
+  } catch (err) {
+    alert("Login failed: " + (err.response?.data?.error || err.message));
+  }
+};
+
 
   return (
     <>

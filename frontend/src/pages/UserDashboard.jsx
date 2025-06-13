@@ -15,10 +15,11 @@ const UserDashboard = () => {
  const fetchStores = async () => {
   try {
     const res = await axios.get('http://localhost:5000/api/user/stores', authHeader);
-    console.log('Fetched stores:', res.data); // ✅ debug log
+    console.log('Stores:', res.data); 
     setStores(res.data);
+    
   } catch (err) {
-    console.error('Failed to fetch stores:', err.response?.data || err.message); // ❌ error log
+    console.error('Failed to fetch stores:', err.response?.data || err.message); 
   }
 };
 

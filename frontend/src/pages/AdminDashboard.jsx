@@ -34,6 +34,13 @@ const AdminDashboard = () => {
   return (
     <div className="admin-container">
       <h1 className="title">Admin Dashboard</h1>
+      <button onClick={() => {
+  localStorage.removeItem('token');
+  window.location.href = '/';
+}}>
+  Logout
+</button>
+
 
       <div className="stats">
         <div className="stat-card">Users: {stats.totalUsers}</div>

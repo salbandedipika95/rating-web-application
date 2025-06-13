@@ -11,6 +11,7 @@ const Signup = () => {
       email: "",
       address: "",
       password: "",
+      role: "user",
     },
     validationSchema: Yup.object({
       name: Yup.string().min(20).max(60).required("Name required"),
